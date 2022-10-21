@@ -1,0 +1,24 @@
+//no.1 implicit
+SELECT COUNT(distinct mahasiswa.nim) AS "mahasiswa yang mengambil matkul" 
+FROM mahasiswa, ambil_mk WHERE mahasiswa.nim = ambil_mk.nim;
+
+//no.1 explicit
+SELECT COUNT(distinct mahasiswa.nim) AS "mahasiswa yang mengambil matkul" FROM mahasiswa INNER JOIN ambil_mk WHERE mahasiswa.nim = ambil_mk.nim
+
+//no.2 
+SELECT mahasiswa.jenis_kelamin, COUNT(mahasiswa.jenis_kelamin) AS "jumlah" FROM mahasiswa LEFT OUTER JOIN ambil_mk ON mahasiswa.nim = ambil_mk.nim WHERE ambil_mk.nim IS NULL GROUP BY mahasiswa.jenis_kelamin
+
+//no.3 explicit
+SELECT mahasiswa.nim, mahasiswa.nama, matakuliah.kode_mk, matakuliah.nama_mk FROM mahasiswa INNER JOIN ambil_mk ON mahasiswa.nim =mahasiswa.nim INNER JOIN matakuliah ON matakuliah.kode_mk= matakuliah.kode_mk
+
+//no.3 implicit
+SELECT mahasiswa.nim, mahasiswa.nama, matakuliah.kode_mk, matakuliah.nama_mk FROM mahasiswa,ambil_mk,matakuliah 
+WHERE mahasiswa.nim =mahasiswa.nim AND matakuliah.kode_mk= matakuliah.kode_mk;
+
+//no.4
+SELECT mahasiswa.nim, mahasiswa.nama, SUM(matakuliah.sks) AS jumlah_sks FROM mahasiswa INNER JOIN ambil_mk ON mahasiswa.nim = ambil_mk.nim INNER JOIN matakuliah ON ambil_mk.kode_mk = matakuliah.kode_mk GROUP BY mahasiswa.nama HAVING SUM(matakuliah.sks)>4 AND SUM(matakuliah.sks)<10
+
+//no.5 
+SELECT matakuliah.kode_mk, matakuliah.nama_mk, matakuliah.sks, matakuliah.semester
+FROM matakuliah LEFT OUTER JOIN ambil_mk
+ON ambil_mk.kode_mk = matakuliah.kode_mk LEFT OUTER JOIN mahasiswa ON mahasiswa.nim = ambil_mk.nim WHERE mahasiswa.nim IS NULL;
