@@ -1,0 +1,14 @@
+//Soal A
+SELECT matakuliah.kd_mk, ambil_mk.jml_mhs
+FROM matakuliah, ambil_mk
+WHERE matakuliah.kd_mk = ambil_mk.kd_mk AND ambil_mk.jml_mhs=40;
+
+//Soal B
+SELECT instruktur.nip, instruktur.nama_ins, instruktur.jurusan, instruktur.asal_kota
+FROM instruktur, ambil_mk, matakuliah
+WHERE instruktur.nip = ambil_mk.nip AND ambil_mk.kd_mk=matakuliah.kd_mk AND matakuliah.nama_mk="Basis Data";
+
+//Soal C
+SELECT instruktur.nip, instruktur.nama_ins, instruktur.jurusan, instruktur.asal_kota 
+FROM instruktur LEFT OUTER JOIN ambil_mk ON instruktur.nip = ambil_mk.nip 
+LEFT OUTER JOIN matakuliah ON ambil_mk.kd_mk = matakuliah.kd_mk WHERE ambil_mk.nip IS NULL;

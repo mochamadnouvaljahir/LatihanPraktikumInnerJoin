@@ -1,0 +1,22 @@
+//Inner Join
+SELECT * FROM customer INNER JOIN orders ON customer.customer_id = orders.customer_id;
+
+//Outer Join (left)
+SELECT * FROM customer LEFT OUTER JOIN orders ON customer.customer_id = orders.customer_id;
+
+//Outer Join (right)
+SELECT * FROM customer RIGHT OUTER JOIN orders ON customer.customer_id= orders.customer_id;
+
+//Cross Join
+SELECT * FROM customer CROSS JOIN orders;
+
+//Full Outer Join(Union)
+SELECT * FROM customer LEFT OUTER JOIN orders ON customer.customer_id = orders.customer_id
+UNION SELECT * FROM customer RIGHT OUTER JOIN orders on customer.customer_id = orders.customer_id;
+
+
+//Union all
+SELECT * FROM customer LEFT OUTER JOIN orders ON customer.customer_id = orders.customer_id
+UNION ALL SELECT * FROM customer RIGHT OUTER JOIN orders on customer.customer_id = orders.customer_id;
+
+
